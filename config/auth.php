@@ -35,7 +35,7 @@ return [
     |
     */
 
-   'guards' => [
+'guards' => [
     'web' => [
         'driver' => 'session',
         'provider' => 'users',
@@ -51,6 +51,11 @@ return [
     'admin' => [
         'driver' => 'session',
         'provider' => 'admins',
+    ],
+    // Tambahkan guard bendahara di sini
+    'bendahara' => [
+        'driver' => 'session',
+        'provider' => 'bendaharas',
     ],
 ],
 
@@ -71,8 +76,12 @@ return [
         'driver' => 'eloquent',
         'model' => App\Models\Admin::class,
     ],
+    // Tambahkan provider bendahara di sini
+    'bendaharas' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Bendahara::class,
+    ],
 ],
-
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

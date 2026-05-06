@@ -21,7 +21,7 @@ class Login extends Component
     {
         $this->validate();
 
-       
+
         $siswa = Siswa::where('nipd', $this->username)->first();
         if ($siswa && \Illuminate\Support\Facades\Hash::check($this->password, $siswa->password)) {
             Auth::guard('siswa')->login($siswa);
@@ -29,14 +29,19 @@ class Login extends Component
             return redirect()->intended('/dashboard');
         }
 
-        
         if (Auth::guard('guru')->attempt(['usn' => $this->username, 'password' => $this->password])) {
             session()->regenerate();
             return redirect()->intended('/dashboard');
         }
 
-
+     
         if (Auth::guard('admin')->attempt(['usn' => $this->username, 'password' => $this->password])) {
+            session()->regenerate();
+            return redirect()->intended('/dashboard');
+        }
+
+
+        if (Auth::guard('bendahara')->attempt(['usn' => $this->username, 'password' => $this->password])) {
             session()->regenerate();
             return redirect()->intended('/dashboard');
         }

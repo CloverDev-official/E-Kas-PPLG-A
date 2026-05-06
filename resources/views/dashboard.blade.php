@@ -25,6 +25,7 @@
                     @auth('siswa') {{ Auth::guard('siswa')->user()->nama_lengkap }} (Siswa) @endauth
                     @auth('guru') {{ Auth::guard('guru')->user()->nama_lengkap }} (Guru) @endauth
                     @auth('admin') {{ Auth::guard('admin')->user()->nama_lengkap }} (Admin) @endauth
+                    @auth('bendahara') {{ Auth::guard('bendahara')->user()->nama_lengkap }} (Bendahara) @endauth
                 </span>
             </p>
             <div class="mt-4 p-4 bg-green-100 rounded">
