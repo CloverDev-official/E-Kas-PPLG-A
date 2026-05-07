@@ -20,15 +20,16 @@
     --color-card: var(--color-white);
     --color-cardForeground: var(--color-gray-900);
 
-    --color-primary: var(--color-blue-500);
+    --color-primary: #4299E1;
     --color-primaryForeground: var(--color-white);
-    --color-primaryHover: var(--color-blue-600);
-    --color-primaryActive: var(--color-blue-700);
+    --color-primaryHover: #3182CE;
+    --color-primaryActive: #2B6CB0;
 
     --color-secondary: var(--color-pink-500);
     --color-secondaryForeground: var(--color-white);
     --color-secondaryHover: var(--color-pink-600);
-    --color-secondaryActive: var(--color-pink-700);
+    --color-secondaryActive: var(--c
+    olor-pink-700);
 
     --color-foreground: var(--color-gray-900);
 
@@ -138,40 +139,40 @@
 @layer components {
     /* button */
     .btn-primary {
-        @apply bg-primary text-primaryForeground
+        @apply bg-primary text-primaryForeground;
         @apply hover:bg-primaryHover active:bg-primaryActive focus:ring-ring;
     }
     .btn-primary:disabled {
         @apply disabled:bg-muted disabled:text-mutedForeground;
     }
     .btn-secondary {
-        @apply bg-secondary text-secondaryForeground
+        @apply bg-secondary text-secondaryForeground;
         @apply hover:bg-secondaryHover active:bg-secondaryActive focus:ring-ring;
     }
     .btn-ghostPrimary {
-        @apply bg-black opacity-0 text-primary
+        @apply bg-black opacity-0 text-primary;
         @apply hover:bg-muted focus:ring-ring;
     }
     .btn-ghostNeutral {
-        @apply bg-black opacity-0 text-foreground
+        @apply bg-black opacity-0 text-foreground;
         @apply hover:bg-muted focus:ring-ring;
     }
     .btn-destructive {
-        @apply bg-destructive text-destructiveForeground
+        @apply bg-destructive text-destructiveForeground;
         @apply hover:bg-destructiveHover focus:ring-ring;
     }
     .btn-outline {
         @apply bg-black opacity-0 text-primary;
     }
     .btn-size {
-        @apply sm:p-2
-        @apply md:p-3
+        @apply sm:p-2;
+        @apply md:p-3;
         @apply lg:p-4;
     }
 
     /* navbar */
     .navbar {
-        @apply bg-primary text-primaryForeground h-14 p-4;
+        @apply bg-primary text-primaryForeground;
     }
     .navbar-icon {
         @apply bg-primaryForeground;
@@ -182,7 +183,7 @@
 
     /* card */
     .card {
-        @apply bg-card text-cardForeground border-border divide-divider p-4;
+        @apply bg-card text-cardForeground border-border divide-divider;
     }
 
     /* input */

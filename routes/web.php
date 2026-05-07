@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Login;
+use App\Livewire\Auth\Login;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/login', Login::class)->name('login');
+Route::livewire('/login', 'pages.login');
 
 Route::post('/logout', function () {
     Auth::guard('siswa')->logout();
@@ -20,9 +21,9 @@ Route::post('/logout', function () {
 })->name('logout');
 
 Route::middleware(['auth:siswa,guru,admin,bendahara'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::livewire('/dashboard', 'pages.murid.dashboard')->name('dashboard');
+    Route::livewire('/list-kas', 'pages.murid.list-kas')->name('list-kas');
+    Route::livewire('/history', 'pages.murid.history')->name('history');
 
     // Contoh route khusus bendahara
     Route::middleware(['role:bendahara'])->group(function () {
