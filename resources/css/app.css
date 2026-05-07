@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -7,6 +8,231 @@
 @source "../**/*.vue";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* font */
+    --font-heading: "Plus Jakarta Sans", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-label: "Inter", sans-serif;
+    --font-caption: "Inter", sans-serif;
+    --font-badge: "Inter", sans-serif;
+
+    /* color */
+    --color-background: var(--color-gray-100);
+    --color-card: var(--color-white);
+    --color-cardForeground: var(--color-gray-900);
+
+    --color-primary: var(--color-blue-500);
+    --color-primaryForeground: var(--color-white);
+    --color-primaryHover: var(--color-blue-600);
+    --color-primaryActive: var(--color-blue-700);
+
+    --color-secondary: var(--color-pink-500);
+    --color-secondaryForeground: var(--color-white);
+    --color-secondaryHover: var(--color-pink-600);
+    --color-secondaryActive: var(--color-pink-700);
+
+    --color-foreground: var(--color-gray-900);
+
+    --color-popover: var(--color-white);
+    --color-popoverForeground: var(--color-gray-900);
+
+    --color-accent: var(--color-yellow-400);
+    --color-accentForeground: var(--color-gray-900);
+
+    --color-muted: var(--color-gray-200);
+    --color-mutedForeground: var(--color-gray-600);
+
+    --color-neutral: var(--color-gray-800);
+    --color-neutralForeground: var(--color-white);
+
+    --color-info: var(--color-blue-400);
+    --color-infoForeground: var(--color-white);
+    --color-infoHover: var(--color-blue-600);
+
+    --color-success: var(--color-green-500);
+    --color-successForeground: var(--color-white);
+    --color-successHover: var(--color-green-600);
+
+    --color-warning: var(--color-orange-500);
+    --color-warningForeground: var(--color-white);
+    --color-warningHover: var(--color-orange-600);
+
+    --color-destructive: var(--color-red-500);
+    --color-destructiveForeground: var(--color-white);
+    --color-destructiveHover: var(--color-red-600);
+
+    --color-border: var(--color-gray-300);
+
+    --color-input: var(--color-gray-200);
+
+    --color-ring: var(--color-blue-500);
+
+    --color-icon: var(--color-gray-700);
+    --color-iconMuted: var(--color-gray-500);
+
+    --color-income: var(--color-green-500);
+    --color-expense: var(--color-red-500);
+    --color-balance: var(--color-blue-500);
+
+    --color-surfaceSubtle: var(--color-gray-50);
+
+    --color-divider: var(--color-gray-200);
+
+    /* spacing */
+    --spacing-0: 0px;
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-8: 32px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+
+    /* line-height */
+    --leading-tight: 1.2;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.75;
+
+    /* letter-spacing */
+    --tracking-tight: -0.32em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.32em;
+
+    /* font-weight */
+    --font-weight-reguler: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* text-size */
+    --text-h1: 36px;
+    --text-h2: 30px;
+    --text-h3: 24px;
+    --text-h4: 20px;
+    --text-h5: 18px;
+    --text-h6: 16px;
+    --text-md: 16px;
+    --text-sm: 14px;
+    --text-xs: 12px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+
+    /* border-radius */
+    --radius-none: 0;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 999px;
+
+    /* border-size */
+    --border-none: 0;
+    --border-sm: 1px;
+    --border-md: 2px;
+    --border-lg: 4px;
+}
+
+@layer components {
+    /* button */
+    .btn-primary {
+        @apply bg-primary text-primaryForeground
+        @apply hover:bg-primaryHover active:bg-primaryActive focus:ring-ring;
+    }
+    .btn-primary:disabled {
+        @apply disabled:bg-muted disabled:text-mutedForeground;
+    }
+    .btn-secondary {
+        @apply bg-secondary text-secondaryForeground
+        @apply hover:bg-secondaryHover active:bg-secondaryActive focus:ring-ring;
+    }
+    .btn-ghostPrimary {
+        @apply bg-black opacity-0 text-primary
+        @apply hover:bg-muted focus:ring-ring;
+    }
+    .btn-ghostNeutral {
+        @apply bg-black opacity-0 text-foreground
+        @apply hover:bg-muted focus:ring-ring;
+    }
+    .btn-destructive {
+        @apply bg-destructive text-destructiveForeground
+        @apply hover:bg-destructiveHover focus:ring-ring;
+    }
+    .btn-outline {
+        @apply bg-black opacity-0 text-primary;
+    }
+    .btn-size {
+        @apply sm:p-2
+        @apply md:p-3
+        @apply lg:p-4;
+    }
+
+    /* navbar */
+    .navbar {
+        @apply bg-primary text-primaryForeground h-14 p-4;
+    }
+    .navbar-icon {
+        @apply bg-primaryForeground;
+    }
+    .navbar-icon:active {
+        @apply bg-primaryForeground;
+    }
+
+    /* card */
+    .card {
+        @apply bg-card text-cardForeground border-border divide-divider p-4;
+    }
+
+    /* input */
+    .input {
+        @apply bg-card text-foreground placeholder:text-mutedForeground border-input focus:ring-ring;
+    }
+    .input:disabled {
+        @apply bg-muted;
+    }
+    .input-error {
+        @apply bg-destructive;
+    }
+
+    /* badge */
+    .badge-success {
+        @apply bg-success text-successForeground;
+    }
+    .badge-destructive {
+        @apply bg-destructive text-destructiveForeground;
+    }
+    .badge-info {
+        @apply bg-info text-infoForeground;
+    }
+    .badge-neutral {
+        @apply bg-neutral text-neutralForeground;
+    }
+
+    /* table */
+    .table {
+        @apply bg-card text-foreground border-border divide-divider;
+    }
+    .table th {
+        @apply bg-surfaceSubtle text-mutedForeground divide-divider;
+    }
+    .table td {
+        @apply border-border divide-divider;
+    }
+    .table tr:hover {
+        @apply bg-muted;
+    }
+    .table-income {
+        @apply bg-income;
+    }
+    .table-expense {
+        @apply bg-expense;
+    }
+    .table-balance {
+        @apply bg-balance;
+    }
+    .table tr.selected {
+        @apply bg-accent;
+    }
 }
