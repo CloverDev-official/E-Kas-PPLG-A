@@ -9,7 +9,7 @@
         <div class="mb-4">
             <label class="block text-gray-700 font-bold mb-2">Username / NIPD</label>
             <input type="text" wire:model="username"
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 bg-sec"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
                 placeholder="Masukkan username atau NIPD" autofocus>
             @error('username')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
