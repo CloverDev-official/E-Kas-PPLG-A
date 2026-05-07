@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Livewire;
-
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
+use Livewire\Attributes\Layout;
 
-class Login extends Component
+new #[Layout('layouts::guest')]  class extends Component
 {
     public $username;
     public $password;
@@ -34,7 +33,6 @@ class Login extends Component
             return redirect()->intended('/dashboard');
         }
 
-     
         if (Auth::guard('admin')->attempt(['usn' => $this->username, 'password' => $this->password])) {
             session()->regenerate();
             return redirect()->intended('/dashboard');
@@ -51,6 +49,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.login')->layout('layouts.guest');
+        return view('livewire.auth.login');
     }
-}
+};
