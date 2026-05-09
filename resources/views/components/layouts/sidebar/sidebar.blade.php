@@ -1,6 +1,6 @@
 <div>
     <!-- DEKSTOP MODE -->
-    <div class="hidden md:flex flex-col w-64 min-h-screen bg-primary text-primaryForeground shadow-lg">
+    <div class="hidden md:flex flex-col w-64 h-screen sticky top-0 overflow-y-auto bg-primary text-primaryForeground shadow-[6px_0_10px_rgba(0,0,0,0.1)]">
     
         <header class="p-4 border-b border-white">
             <h1 class="text-xl font-semibold">
@@ -31,7 +31,7 @@
                 href="{{ route('history') }}"
                 icon="history">
     
-                List KAS
+                History KAS
     
             </x-layouts.nav-link>
     
@@ -47,15 +47,28 @@
     
                     <!-- keterangan -->
                     <div>
-                        @auth ('siswa')
-                                @php
-                                    $siswa = auth('siswa')->user();
-                                @endphp
-                                <p class="text-secondaryForeground text-xs font-medium">{{ $siswa->nipd}}</p>
-                                <p class="text-secondaryForeground text-sm line-clamp-1 font-medium capitalize">
-                                    {{ $siswa->nama_lengkap }}
-                                </p>
-                        @endauth
+                        @if ( auth()->user()->role === 'siswa' || auth()->user()->role == 'siswi' )
+                            @auth ('murid')
+                                    @php
+                                        $murid = auth('murid')->user();
+                                    @endphp
+                                    <p class="text-secondaryForeground text-sm line-clamp-1 font-medium capitalize">
+                                        {{ $murid->nama_lengkap }}
+                                    </p>
+                                    <p class="text-secondaryForeground text-xs font-reguler capitalize">{{ $murid->role}}</p>
+                            @endauth
+
+                            @elseif (auth()->user()->role === 'bendahara')
+                                @auth ('bendahara')
+                                        @php
+                                            $bendahara = auth('bendahara')->user();
+                                        @endphp
+                                        <p class="text-secondaryForeground text-sm line-clamp-1 font-medium capitalize">
+                                            {{ $bendahara->nama_lengkap }}
+                                        </p>
+                                        <p class="text-secondaryForeground text-xs font-reguler">{{ $bendahara->jabatan}}</p>
+                                @endauth
+                        @endif
                     </div>
                 </div>
             </a>
@@ -83,7 +96,7 @@
                 @click="open = false; $dispatch('sidebar-toggle', open)"
                 style="display: none;"
                 x-transition.opacity
-                class="fixed z-40 inset-0 bg-black/40">
+                class="fixed z-40 inset-0 bg-black/40 overflow-hidden">
             </div>
 
             <!-- button -->
@@ -102,7 +115,7 @@
                 x-transition:leave-end="translate-x-full"
                 @click.outside="openside = false"
                 style="display: none;"
-                class="top-0 right-0 absolute w-[15rem] z-50 bg-primary flex flex-col h-screen"
+                class="fixed top-0 right-0 w-[15rem] z-50 bg-primary flex flex-col h-screen overflow-y-auto"
             
             >
                 <header class="p-4 border-b border-white">

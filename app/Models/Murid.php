@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Siswa extends Authenticatable
+class Murid extends Authenticatable
 {
-    protected $table = 'siswa';
+    protected $table = 'murid';
     protected $fillable = [
         'nipd',
         'nama_lengkap',

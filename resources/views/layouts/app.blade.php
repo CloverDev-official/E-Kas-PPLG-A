@@ -10,7 +10,7 @@
 
         @livewireStyles
     </head>
-    <body class="bg-background md:flex md:justify-start overflow-hidden" x-data="{openside: false}" x-init="$watch('open', value => sidebarOpen = value)" >
+    <body class="bg-background md:flex md:justify-start"  x-data="{ openside: false }" :class="openside ? 'overflow-hidden h-screen' : ''" >
         <livewire:layouts.sidebar/>
         <main class="grow-7 p-4 " >
             <livewire:layouts.header/>
@@ -18,5 +18,6 @@
         </main>
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
     </body>
 </html>

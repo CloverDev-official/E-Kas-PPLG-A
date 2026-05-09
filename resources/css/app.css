@@ -25,7 +25,7 @@
     --color-primaryHover: #3182CE;
     --color-primaryActive: #2B6CB0;
 
-    --color-secondary: var(--color-pink-500);
+    --color-secondary: #ED64A6;
     --color-secondaryForeground: var(--color-white);
     --color-secondaryHover: var(--color-pink-600);
     --color-secondaryActive: var(--c
@@ -49,15 +49,17 @@
     --color-infoForeground: var(--color-white);
     --color-infoHover: var(--color-blue-600);
 
-    --color-success: var(--color-green-500);
+    --color-success: #48BB78;
+    --color-success-secondary: #48BB78;
     --color-successForeground: var(--color-white);
     --color-successHover: var(--color-green-600);
 
-    --color-warning: var(--color-orange-500);
+    --color-warning: #ED8936;
     --color-warningForeground: var(--color-white);
     --color-warningHover: var(--color-orange-600);
 
-    --color-destructive: var(--color-red-500);
+    --color-destructive: #F56565;
+    --color-destructive-secondary: #F56565;
     --color-destructiveForeground: var(--color-white);
     --color-destructiveHover: var(--color-red-600);
 

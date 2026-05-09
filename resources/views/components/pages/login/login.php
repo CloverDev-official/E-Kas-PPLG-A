@@ -2,7 +2,7 @@
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Siswa;
+use App\Models\Murid;
 use Livewire\Attributes\Layout;
 
 new #[Layout('layouts::guest')]  class extends Component
@@ -21,9 +21,9 @@ new #[Layout('layouts::guest')]  class extends Component
         $this->validate();
 
 
-        $siswa = Siswa::where('nipd', $this->username)->first();
-        if ($siswa && \Illuminate\Support\Facades\Hash::check($this->password, $siswa->password)) {
-            Auth::guard('siswa')->login($siswa);
+        $murid = Murid::where('nipd', $this->username)->first();
+        if ($murid && \Illuminate\Support\Facades\Hash::check($this->password, $murid->password)) {
+            Auth::guard('murid')->login($murid);
             session()->regenerate();
             return redirect()->intended('/dashboard');
         }
