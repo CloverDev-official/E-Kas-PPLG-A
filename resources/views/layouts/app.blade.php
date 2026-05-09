@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? config('app.name') }}</title>
+        <title>{{ $title ?? ucwords(str_replace(['-', '.'], ' ', Route::currentRouteName())) }}</title>
         <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.2/dist/iconify-icon.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
