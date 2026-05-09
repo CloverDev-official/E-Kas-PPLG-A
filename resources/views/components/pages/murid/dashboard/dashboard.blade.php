@@ -2,7 +2,7 @@
     <!-- card keterangan siswa container -->
     <div class="grid grid-cols-3 gap-2 md:gap-5" >
         <!-- card jumlah siswa -->
-        <div class="bg-secondary rounded-xl md:rounded-br-sm px-4 py-5 shadow-md flex flex-col" >
+        <div class="bg-secondary rounded-xl px-4 py-5 shadow-md flex flex-col" >
             <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
                 <iconify-icon icon="mdi:user" width="24" height="24" class="hidden md:block"></iconify-icon>
                 <h1 class="font-medium text-xs md:text-md capitalize">jumlah murid</h1>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <!-- card sudah bayar -->
-        <div class="bg-success rounded-xl md:rounded-br-sm px-4 py-5 shadow-md flex flex-col" >
+        <div class="bg-success rounded-xl px-4 py-5 shadow-md flex flex-col" >
             <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
                 <iconify-icon icon="mdi:check-circle" width="24" height="24" class="hidden md:block"></iconify-icon>
                 <h1 class="font-medium text-xs md:text-md capitalize">sudah bayar</h1>
@@ -22,9 +22,9 @@
             </div>
         </div>
         <!-- card belum bayar -->
-        <div class="bg-warning rounded-xl md:rounded-br-sm px-4 py-5 shadow-md flex flex-col" >
+        <div class="bg-warning rounded-xl px-4 py-5 shadow-md flex flex-col" >
             <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
-                <iconify-icon icon="mdi:do-not-disturb-on" width="24" height="24" class="hidden md:block"></iconify-icon>
+                <iconify-icon icon="mdi:clock" width="24" height="24" class="hidden md:block"></iconify-icon>
                 <h1 class="font-medium text-xs md:text-md capitalize">belum bayar</h1>
             </div>
             <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
@@ -32,7 +32,6 @@
             </div>
         </div>
     </div>
-
     <!-- container kas -->
     <div class="grid grid-cols-1 {{ auth()->user()->role === 'bendahara' ? 'md:grid-cols-3' : '' }}  gap-5">
         @if (auth()->user()->role === 'bendahara')
@@ -49,26 +48,34 @@
         <!-- container pengekuaran dan pemasukan -->
         <div class="grid {{ auth()->user()->role === 'bendahara' ? 'md:grid-cols-1' : 'grid-cols-2' }}  grid-cols-1 gap-2 md:gap-5">
             <!-- card pemasukan -->
-            <div class="bg-primary rounded-xl md:rounded-br-sm px-4 py-5 shadow-md flex flex-col" >
+            <div class="bg-primary rounded-xl px-4 py-5 shadow-md flex flex-col" >
                 <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
-                    <iconify-icon icon="mdi:arrow-up-bold-circle" width="24" height="24" class="hidden md:block"></iconify-icon>
+                    <iconify-icon icon="mdi:trending-up" width="24" height="24" class="hidden md:block"></iconify-icon>
                     <h1 class="font-medium text-xs md:text-md capitalize">total pemasukan</h1>
                 </div>
                 <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
                     Rp {{ number_format($totalPemasukan, 0, ',', '.') }}
                 </div>
-
             </div>
             <!-- card pengeluaran -->
-            <div class="bg-destructive rounded-xl md:rounded-br-sm px-4 py-5 shadow-md flex flex-col" >
+            <div class="bg-destructive rounded-xl px-4 py-5 shadow-md flex flex-col" >
                 <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
-                    <iconify-icon icon="mdi:arrow-down-bold-circle" width="24" height="24" class="hidden md:block"></iconify-icon>
+                    <iconify-icon icon="mdi:trending-down" width="24" height="24" class="hidden md:block"></iconify-icon>
                     <h1 class="font-medium text-xs md:text-md capitalize">total pengeluaran</h1>
                 </div>
                 <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
                     Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}
                 </div>
-
+            </div>
+            <!-- card pengeluaran -->
+            <div class="bg-purple-600 rounded-xl px-4 py-5 shadow-md flex flex-col" >
+                <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
+                    <iconify-icon icon="mdi:account-balance-wallet" width="24" height="24" class="hidden md:block"></iconify-icon>
+                    <h1 class="font-medium text-xs md:text-md capitalize">total pengeluaran</h1>
+                </div>
+                <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
+                    Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}
+                </div>
             </div>
         </div>
     </div>
@@ -79,6 +86,12 @@
                 <iconify-icon icon="mdi:history" width="24" height="24" class="mt-1" ></iconify-icon>
                 <p class="capitalize text-h4 font-reguler  text-cardForeground">transaksi terbaru</p>
             </div>
+            <a href="">
+                <div class="flex justify-center items-center text-mutedForeground font-reguler" >
+                    <p>Lihat semua</p>
+                    <iconify-icon icon="mdi:chevron-right" width="24" height="24"></iconify-icon>
+                </div>
+            </a>
         </div>
     </div>
     <form method="POST" action="{{ route('logout') }}">
