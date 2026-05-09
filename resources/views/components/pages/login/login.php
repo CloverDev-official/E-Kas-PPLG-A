@@ -47,8 +47,4 @@ new #[Layout('layouts::guest')]  class extends Component
         $this->errorMessage = 'Username/NIPD atau password salah.';
     }
 
-    public function render()
-    {
-        return view('livewire.auth.login');
-    }
 };
