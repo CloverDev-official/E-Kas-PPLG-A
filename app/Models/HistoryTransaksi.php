@@ -8,6 +8,7 @@ class HistoryTransaksi extends Model
 {
     protected $table = 'history_transaksi';
     protected $fillable = [
+        'murid_id',
         'tipe',
         'nama',
         'metode_pembayaran',

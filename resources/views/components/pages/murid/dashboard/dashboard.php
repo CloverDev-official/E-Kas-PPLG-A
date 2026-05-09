@@ -1,8 +1,61 @@
 <?php
 
 use Livewire\Component;
+use App\Models\Murid;
+use App\Models\HistoryTransaksi;
 
 new class extends Component
 {
-    //
+    public $jumlahMurid;
+    public $sudahBayar;
+    public $belumBayar;
+
+    public $pemasukan = [];
+    public $pengeluaran = [];
+
+    public $totalPemasukan;
+    public $totalPengeluaran;
+
+    public function mount()
+    {
+        $this->jumlahMurid = murid::count();
+
+        $this->sudahBayar = HistoryTransaksi::distinct('murid_id')->count();
+
+        $this->belumBayar = $this->jumlahMurid - $this->sudahBayar;
+
+        $this->loadChartData();
+
+        $this->loadKasData();
+    }
+
+    public function loadChartData()
+    {
+        $months = collect(range(1, 12));
+
+        $this->pemasukan = $months->map(function ($month) {
+
+            return HistoryTransaksi::where('tipe', 'pemasukan')
+                ->whereMonth('tanggal_waktu', $month)
+                ->sum('jumlah');
+
+        })->toArray();
+
+        $this->pengeluaran = $months->map(function ($month) {
+
+            return HistoryTransaksi::where('tipe', 'pengeluaran')
+                ->whereMonth('tanggal_waktu', $month)
+                ->sum('jumlah');
+
+        })->toArray();
+    }
+
+    public function loadKasData()
+    {
+        $this->totalPemasukan = HistoryTransaksi::where('tipe', 'pemasukan')
+            ->sum('jumlah');
+
+        $this->totalPengeluaran = HistoryTransaksi::where('tipe', 'pengeluaran')
+            ->sum('jumlah');
+    }
 };

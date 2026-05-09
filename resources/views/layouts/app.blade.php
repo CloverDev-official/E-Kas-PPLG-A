@@ -4,18 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? config('app.name') }}</title>
+        <title>{{ $title ?? ucwords(str_replace(['-', '.'], ' ', Route::currentRouteName())) }}</title>
         <script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.2/dist/iconify-icon.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @livewireStyles
     </head>
-    <body class="md:flex md:justify-start md:gap-5 overflow-hidden" x-data="{openside: false}" x-init="$watch('open', value => sidebarOpen = value)" >
+    <body class="bg-background md:flex md:justify-start"  x-data="{ openside: false }" :class="openside ? 'overflow-hidden h-screen' : ''" >
         <livewire:layouts.sidebar/>
-        <main class="grow-7" >
+        <main class="grow-7 p-4 " >
+            <livewire:layouts.header/>
             {{ $slot }}
         </main>
 
         @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
     </body>
 </html>

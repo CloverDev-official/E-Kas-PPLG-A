@@ -40,9 +40,9 @@ return [
         'driver' => 'session',
         'provider' => 'users',
     ],
-    'siswa' => [
+    'murid' => [
         'driver' => 'session',
-        'provider' => 'siswas',
+        'provider' => 'murids',
     ],
     'guru' => [
         'driver' => 'session',
@@ -64,9 +64,9 @@ return [
         'driver' => 'eloquent',
         'model' => App\Models\User::class,
     ],
-    'siswas' => [
+    'murids' => [
         'driver' => 'eloquent',
-        'model' => App\Models\Siswa::class,
+        'model' => App\Models\Murid::class,
     ],
     'gurus' => [
         'driver' => 'eloquent',

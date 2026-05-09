@@ -8,13 +8,13 @@
 
     $icons = [
         'dashboard' => [
-            'active' => 'mage:dashboard-plus-fill',
-            'inactive' => 'mage:dashboard-plus'
+            'active' => 'imdi:view-dashboard',
+            'inactive' => 'mdi:view-dashboard-outline'
         ],
 
         'listKas' => [
-            'active' => 'iconoir:list',
-            'inactive' => 'iconoir:list'
+            'active' => 'mdi:format-list-bulleted',
+            'inactive' => 'mdi:format-list-bulleted'
         ],
 
         'history' => [
