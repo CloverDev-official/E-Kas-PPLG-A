@@ -63,6 +63,8 @@
     --color-destructiveForeground: var(--color-white);
     --color-destructiveHover: var(--color-red-600);
 
+    --color-purple: #805AD5;
+
     --color-border: var(--color-gray-300);
 
     --color-input: var(--color-gray-200);
