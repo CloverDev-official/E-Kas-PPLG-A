@@ -10,9 +10,10 @@
 
         @livewireStyles
     </head>
-    <body class="md:flex md:justify-start md:gap-5 overflow-hidden" x-data="{openside: false}" x-init="$watch('open', value => sidebarOpen = value)" >
+    <body class="bg-background md:flex md:justify-start overflow-hidden" x-data="{openside: false}" x-init="$watch('open', value => sidebarOpen = value)" >
         <livewire:layouts.sidebar/>
-        <main class="grow-7" >
+        <main class="grow-7 p-4 " >
+            <livewire:layouts.header/>
             {{ $slot }}
         </main>
 
