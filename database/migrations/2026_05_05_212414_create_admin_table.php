@@ -15,13 +15,11 @@ return new class extends Migration
             $table->string('usn', 50)->unique();
             $table->string('nama_lengkap', 100);
             $table->string('password', 255);
-            $table->string('role', 20)->default('admin');
-            $table->string('session', 255)->nullable();
             $table->timestamps();
         });
 
         DB::table('admin')->insert([
-            ['usn' => 'admin_sekolah', 'nama_lengkap' => 'Administrator Utama', 'password' => Hash::make('admin123'), 'role' => 'admin', 'created_at' => now(), 'updated_at' => now()],
+            ['usn' => 'admin_sekolah', 'nama_lengkap' => 'Administrator Utama', 'password' => Hash::make('admin123'), 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 

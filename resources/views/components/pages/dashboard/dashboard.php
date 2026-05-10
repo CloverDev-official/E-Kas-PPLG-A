@@ -1,8 +1,10 @@
 <?php
 
 use Livewire\Component;
+
 use App\Models\Murid;
-use App\Models\HistoryTransaksi;
+use App\Models\RiwayatTransaksi;
+use App\Models\PembayaranMurid;
 
 new class extends Component
 {
@@ -18,11 +20,13 @@ new class extends Component
 
     public function mount()
     {
-        $this->jumlahMurid = murid::count();
+        $this->jumlahMurid = Murid::count();
 
-        $this->sudahBayar = HistoryTransaksi::distinct('murid_id')->count();
+        $this->sudahBayar = PembayaranMurid::distinct('murid_id')
+            ->count('murid_id');
 
-        $this->belumBayar = $this->jumlahMurid - $this->sudahBayar;
+        $this->belumBayar =
+            $this->jumlahMurid - $this->sudahBayar;
 
         $this->loadChartData();
 
@@ -35,7 +39,7 @@ new class extends Component
 
         $this->pemasukan = $months->map(function ($month) {
 
-            return HistoryTransaksi::where('tipe', 'pemasukan')
+            return RiwayatTransaksi::where('tipe', 'pemasukan')
                 ->whereMonth('tanggal_waktu', $month)
                 ->sum('jumlah');
 
@@ -43,7 +47,7 @@ new class extends Component
 
         $this->pengeluaran = $months->map(function ($month) {
 
-            return HistoryTransaksi::where('tipe', 'pengeluaran')
+            return RiwayatTransaksi::where('tipe', 'pengeluaran')
                 ->whereMonth('tanggal_waktu', $month)
                 ->sum('jumlah');
 
@@ -52,10 +56,10 @@ new class extends Component
 
     public function loadKasData()
     {
-        $this->totalPemasukan = HistoryTransaksi::where('tipe', 'pemasukan')
+        $this->totalPemasukan = RiwayatTransaksi::where('tipe', 'pemasukan')
             ->sum('jumlah');
 
-        $this->totalPengeluaran = HistoryTransaksi::where('tipe', 'pengeluaran')
+        $this->totalPengeluaran = RiwayatTransaksi::where('tipe', 'pengeluaran')
             ->sum('jumlah');
     }
 };

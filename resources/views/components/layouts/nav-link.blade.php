@@ -8,7 +8,7 @@
 
     $icons = [
         'dashboard' => [
-            'active' => 'imdi:view-dashboard',
+            'active' => 'mdi:view-dashboard',
             'inactive' => 'mdi:view-dashboard-outline'
         ],
 
