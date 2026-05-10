@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    @if (auth()->user()->role === 'bendahara')
+    @if (currentGuard() === 'bendahara')
         <!-- cpntainer chart total dan pengeluaran kas -->
         <div class="bg-card shadow-md p-4 pt-8 rounded-xl rounded-tr-sm col-span-2">
             <div 

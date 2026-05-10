@@ -2,23 +2,26 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('total_kas', function (Blueprint $table) {
+        Schema::create('pembayaran_murids', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total_saldo', 15, 2)->default(0);
-            $table->timestamp('last_updated')->nullable();
+            $table->timestamps();
         });
-
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('total_kas');
+        Schema::dropIfExists('pembayaran_murids');
     }
 };

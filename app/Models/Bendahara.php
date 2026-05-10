@@ -12,7 +12,6 @@ class Bendahara extends Authenticatable
         'usn',
         'nama_lengkap',
         'password',
-        'role',
         'jabatan',
         'session'
     ];

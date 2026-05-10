@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HistoryTransaksi extends Model
+class RiwayatTransaksi extends Model
 {
-    protected $table = 'history_transaksi';
-    protected $fillable = [
-        'murid_id',
+    protected $table = 'riwayat_transaksi';
+    protected $fillable = [ 
         'tipe',
         'nama',
         'metode_pembayaran',

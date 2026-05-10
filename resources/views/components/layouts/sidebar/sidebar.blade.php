@@ -47,27 +47,26 @@
     
                     <!-- keterangan -->
                     <div>
-                        @if ( auth()->user()->role === 'siswa' || auth()->user()->role == 'siswi' )
-                            @auth ('murid')
-                                    @php
-                                        $murid = auth('murid')->user();
-                                    @endphp
-                                    <p class="text-secondaryForeground text-sm line-clamp-1 font-medium capitalize">
-                                        {{ $murid->nama_lengkap }}
-                                    </p>
-                                    <p class="text-secondaryForeground text-xs font-reguler capitalize">{{ $murid->role}}</p>
-                            @endauth
+                        @php
+                            $user = currentUser();
+                        @endphp
 
-                            @elseif (auth()->user()->role === 'bendahara')
-                                @auth ('bendahara')
-                                        @php
-                                            $bendahara = auth('bendahara')->user();
-                                        @endphp
-                                        <p class="text-secondaryForeground text-sm line-clamp-1 font-medium capitalize">
-                                            {{ $bendahara->nama_lengkap }}
-                                        </p>
-                                        <p class="text-secondaryForeground text-xs font-reguler">{{ $bendahara->jabatan}}</p>
-                                @endauth
+                        <p class="text-secondaryForeground text-sm line-clamp-1 font-medium capitalize">
+                            {{ $user->nama_lengkap }}
+                        </p>
+
+                        @if(isMurid())
+
+                            <p class="text-secondaryForeground text-xs font-regular capitalize">
+                                {{ $user->jenis_kelamin === 'L' ? 'Siswa' : 'Siswi' }}
+                            </p>
+
+                        @elseif(isBendahara())
+
+                            <p class="text-secondaryForeground text-xs font-regular">
+                                {{ $user->jabatan }}
+                            </p>
+
                         @endif
                     </div>
                 </div>

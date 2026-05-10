@@ -3,18 +3,49 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+/*
+|--------------------------------------------------------------------------
+| Redirect Root
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::livewire('/login', 'pages.login');
+/*
+|--------------------------------------------------------------------------
+| Guest Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('guest')->group(function () {
+
+    Route::livewire('/login', 'pages.login')
+        ->name('login');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Logout
+|--------------------------------------------------------------------------
+*/
 
 Route::post('/logout', function () {
 
-    Auth::guard('murid')->logout();
-    Auth::guard('guru')->logout();
-    Auth::guard('admin')->logout();
-    Auth::guard('bendahara')->logout();
+    $guards = [
+        'admin',
+        'bendahara',
+        'guru',
+        'murid'
+    ];
+
+    foreach ($guards as $guard) {
+
+        if (Auth::guard($guard)->check()) {
+            Auth::guard($guard)->logout();
+        }
+    }
 
     session()->invalidate();
     session()->regenerateToken();
@@ -23,30 +54,42 @@ Route::post('/logout', function () {
 
 })->name('logout');
 
+/*
+|--------------------------------------------------------------------------
+| Protected Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware([
     'auth:murid,guru,admin,bendahara'
 ])->group(function () {
 
-    Route::livewire('/dashboard', 'pages.murid.dashboard')
+    Route::livewire('/dashboard', 'pages.dashboard')
         ->name('dashboard');
 
-    Route::livewire('/list-kas', 'pages.murid.list-kas')
+    Route::livewire('/list-kas', 'pages.list-kas')
         ->name('list-kas');
 
-    Route::livewire('/history', 'pages.murid.history')
+    Route::livewire('/history', 'pages.history')
         ->name('history');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Only
+    |--------------------------------------------------------------------------
+    */
 
-    // khusus bendahara
-    Route::middleware(['role:bendahara'])->group(function () {
+    Route::livewire('/users', 'pages.users')
+        ->middleware('role:admin')
+        ->name('users');
 
-        Route::get('/bendahara/dashboard', function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Admin + Bendahara
+    |--------------------------------------------------------------------------
+    */
 
-            return 'Halaman khusus Bendahara';
-
-        });
-
-    });
-
+    Route::livewire('/transaksi', 'pages.transaksi')
+        ->middleware('role:admin,bendahara')
+        ->name('transaksi');
 });

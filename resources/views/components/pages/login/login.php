@@ -2,10 +2,12 @@
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Murid;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 
-new #[Layout('layouts::guest')]  class extends Component
+use App\Models\Murid;
+
+new #[Layout('layouts::guest')] class extends Component
 {
     public $username;
     public $password;
@@ -20,31 +22,42 @@ new #[Layout('layouts::guest')]  class extends Component
     {
         $this->validate();
 
-
+        // login murid
         $murid = Murid::where('nipd', $this->username)->first();
-        if ($murid && \Illuminate\Support\Facades\Hash::check($this->password, $murid->password)) {
+
+        if (
+            $murid &&
+            Hash::check($this->password, $murid->password)
+        ) {
+
             Auth::guard('murid')->login($murid);
+
             session()->regenerate();
-            return redirect()->intended('/dashboard');
+
+            return redirect('/dashboard');
         }
 
-        if (Auth::guard('guru')->attempt(['usn' => $this->username, 'password' => $this->password])) {
-            session()->regenerate();
-            return redirect()->intended('/dashboard');
+        // login role lain
+        $guards = [
+            'guru',
+            'admin',
+            'bendahara'
+        ];
+
+        foreach ($guards as $guard) {
+
+            if (Auth::guard($guard)->attempt([
+                'usn' => $this->username,
+                'password' => $this->password
+            ])) {
+
+                session()->regenerate();
+
+                return redirect('/dashboard');
+            }
         }
 
-        if (Auth::guard('admin')->attempt(['usn' => $this->username, 'password' => $this->password])) {
-            session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
-
-
-        if (Auth::guard('bendahara')->attempt(['usn' => $this->username, 'password' => $this->password])) {
-            session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
-
-        $this->errorMessage = 'Username/NIPD atau password salah.';
+        $this->errorMessage =
+            'Username/NIPD atau password salah.';
     }
-
 };
