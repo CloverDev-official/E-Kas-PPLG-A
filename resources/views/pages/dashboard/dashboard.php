@@ -1,7 +1,6 @@
 <?php
 
 use Livewire\Component;
-
 use App\Models\Murid;
 use App\Models\RiwayatTransaksi;
 use App\Models\PembayaranMurid;

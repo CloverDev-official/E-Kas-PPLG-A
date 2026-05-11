@@ -11,9 +11,9 @@
         @livewireStyles
     </head>
     <body class="bg-background md:flex md:justify-start overflow-x-hidden"  x-data="{ openside: false }" :class="openside ? 'overflow-hidden h-screen' : ''" >
-        <livewire:layouts.sidebar/>
+        <livewire:sidebar/>
         <main class="grow-7 p-4" >
-            <livewire:layouts.header/>
+            <livewire:header/>
             {{ $slot }}
         </main>
 

@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
 
-    Route::livewire('/login', 'pages.login')
+    Route::livewire('/login', 'pages::auth.login')
         ->name('login');
 });
 
@@ -64,14 +64,20 @@ Route::middleware([
     'auth:murid,guru,admin,bendahara'
 ])->group(function () {
 
-    Route::livewire('/dashboard', 'pages.dashboard')
+    Route::livewire('/dashboard', 'pages::dashboard')
         ->name('dashboard');
 
-    Route::livewire('/list-kas', 'pages.list-kas')
-        ->name('list-kas');
+    Route::livewire('/pemasukan-kas', 'pages::pemasukan-kas')
+        ->name('pemasukan-kas');
 
-    Route::livewire('/history', 'pages.history')
-        ->name('history');
+    Route::livewire('/pengeluaran-kas', 'pages::pengeluaran-kas')
+        ->name('pengeluaran-kas');
+
+    Route::livewire('/riwayat-kas', 'pages::riwayat-kas')
+        ->name('riwayat-kas');
+
+    Route::livewire('/profil', 'pages::profil')
+        ->name('profil');
 
     /*
     |--------------------------------------------------------------------------

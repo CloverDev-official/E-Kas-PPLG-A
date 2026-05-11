@@ -18,9 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('admin')->insert([
-            ['usn' => 'admin_sekolah', 'nama_lengkap' => 'Administrator Utama', 'password' => Hash::make('admin123'), 'created_at' => now(), 'updated_at' => now()],
-        ]);
+
     }
 
     public function down(): void

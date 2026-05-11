@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\layouts;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class navLink extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layouts.nav-link');
+        return view('components.nav-link');
     }
 }

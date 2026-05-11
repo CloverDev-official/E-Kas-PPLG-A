@@ -1,38 +1,42 @@
 <div class="min-h-screen mt-5 space-y-5  ">
     <!-- card keterangan siswa container -->
     <div class="grid grid-cols-3 gap-2 md:gap-5" >
-        <!-- card jumlah siswa -->
-        <div class="bg-secondary rounded-xl px-4 py-5 shadow-md flex flex-col" >
-            <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
-                <iconify-icon icon="mdi:user" width="24" height="24" class="hidden md:block"></iconify-icon>
-                <h1 class="font-medium text-xs md:text-md capitalize font-body ">jumlah murid</h1>
+        @if (currentGuard() === 'bendahara' || currentGuard() === 'admin' )
+        
+            <!-- card jumlah siswa -->
+            <div class="bg-secondary rounded-xl px-4 py-5 shadow-md flex flex-col" >
+                <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
+                    <iconify-icon icon="mdi:user" width="24" height="24" class="hidden md:block"></iconify-icon>
+                    <h1 class="font-medium text-xs md:text-md capitalize font-body ">jumlah murid</h1>
+                </div>
+                <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
+                    {{ $jumlahMurid }}
+                </div>
             </div>
-            <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
-                {{ $jumlahMurid }}
+            <!-- card sudah bayar -->
+            <div class="bg-success rounded-xl px-4 py-5 shadow-md flex flex-col" >
+                <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
+                    <iconify-icon icon="mdi:check-circle" width="24" height="24" class="hidden md:block"></iconify-icon>
+                    <h1 class="font-medium text-xs md:text-md capitalize font-body ">sudah bayar</h1>
+                </div>
+                <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
+                    {{ $sudahBayar }}
+                </div>
             </div>
-        </div>
-        <!-- card sudah bayar -->
-        <div class="bg-success rounded-xl px-4 py-5 shadow-md flex flex-col" >
-            <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
-                <iconify-icon icon="mdi:check-circle" width="24" height="24" class="hidden md:block"></iconify-icon>
-                <h1 class="font-medium text-xs md:text-md capitalize font-body ">sudah bayar</h1>
+            <!-- card belum bayar -->
+            <div class="bg-warning rounded-xl px-4 py-5 shadow-md flex flex-col" >
+                <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
+                    <iconify-icon icon="mdi:clock" width="24" height="24" class="hidden md:block"></iconify-icon>
+                    <h1 class="font-medium text-xs md:text-md capitalize font-body ">belum bayar</h1>
+                </div>
+                <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
+                    {{ $belumBayar }}
+                </div>
             </div>
-            <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
-                {{ $sudahBayar }}
-            </div>
-        </div>
-        <!-- card belum bayar -->
-        <div class="bg-warning rounded-xl px-4 py-5 shadow-md flex flex-col" >
-            <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
-                <iconify-icon icon="mdi:clock" width="24" height="24" class="hidden md:block"></iconify-icon>
-                <h1 class="font-medium text-xs md:text-md capitalize font-body ">belum bayar</h1>
-            </div>
-            <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
-                {{ $belumBayar }}
-            </div>
-        </div>
+
+        @endif
     </div>
-    @if (currentGuard() === 'bendahara')
+    @if (currentGuard() === 'bendahara'|| currentGuard() === 'admin' )
         <!-- cpntainer chart total dan pengeluaran kas -->
         <div class="bg-card shadow-md p-4 pt-8 rounded-xl rounded-tr-sm col-span-2">
             <div 
@@ -69,7 +73,7 @@
         <div class="bg-primary rounded-xl px-4 py-5 shadow-md flex flex-col" >
             <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
                 <iconify-icon icon="mdi:account-balance-wallet" width="24" height="24" class="hidden md:block"></iconify-icon>
-                <h1 class="font-medium text-xs md:text-md capitalize font-body ">total pengeluaran</h1>
+                <h1 class="font-medium text-xs md:text-md capitalize font-body ">total KAS</h1>
             </div>
             <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
                 Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}
@@ -83,7 +87,7 @@
                 <iconify-icon icon="mdi:history" width="24" height="24" class="mt-1" ></iconify-icon>
                 <p class="capitalize text-h4 font-reguler  text-cardForeground">transaksi terbaru</p>
             </div>
-            <a href="{{ route('history') }}">
+            <a href="{{ route('riwayat-kas') }}">
                 <div class="flex justify-center items-center text-mutedForeground font-reguler transition-all duration-150 hover:text-primaryHover" >
                     <p>Lihat semua</p>
                     <iconify-icon icon="mdi:chevron-right" class="mt-1"  width="24" height="24"></iconify-icon>
