@@ -12,12 +12,17 @@
             'inactive' => 'mdi:view-dashboard-outline'
         ],
 
-        'listKas' => [
-            'active' => 'mdi:format-list-bulleted',
-            'inactive' => 'mdi:format-list-bulleted'
+        'pemasukan' => [
+            'active' => 'mdi:wallet-plus',
+            'inactive' => 'mdi:wallet-plus-outline'
         ],
 
-        'history' => [
+        'pengeluaran' => [
+            'active' => 'majesticons:money-minus',
+            'inactive' => 'majesticons:money-minus-line'
+        ],
+
+        'riwayat' => [
             'active' => 'mdi:clock-time-three',
             'inactive' => 'mdi:clock-time-three-outline'
         ],
@@ -31,7 +36,7 @@
     href="{{ $href }}"
     wire:navigate
     {{ $attributes->merge([
-        'class' => 'flex items-center justify-start gap-2 px-4 py-3 rounded-full transition text-sm font-bold ' .
+        'class' => 'flex items-center justify-start gap-2 px-4 py-2 rounded-full transition text-md font-bold ' .
                     ($active 
                         ? 'bg-primaryActive text-white'
                         : 'text-white hover:bg-primaryHover'
@@ -42,8 +47,8 @@
         @if($iconName)
             <iconify-icon 
                 icon="{{ $active ? $iconName['active'] : $iconName['inactive'] }}"
-                width="20"
-                height="20">
+                width="24"
+                height="24">
             </iconify-icon>
         @endif
     
