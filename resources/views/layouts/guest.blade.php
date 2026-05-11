@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="bg-gradient-to-br from-blue-500 to-purple-600">
+<body class="bg-[#77C1FF]">
     <div class="min-h-screen flex items-center justify-center p-4">
         {{ $slot }}
     </div>
