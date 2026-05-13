@@ -13,6 +13,8 @@ class RiwayatTransaksi extends Model
         'metode_pembayaran',
         'jumlah',
         'tanggal_waktu',
-        'keterangan'
+        'keterangan',
+        'created_by_id',
+        'created_by_role',
     ];
 }

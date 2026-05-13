@@ -2,8 +2,9 @@
 
 use Livewire\Component;
 use App\Models\Murid;
+use App\Models\PembayaranMinggu;
 use App\Models\RiwayatTransaksi;
-use App\Models\PembayaranMurid;
+use App\Models\TotalKas;
 
 new class extends Component
 {
@@ -14,6 +15,7 @@ new class extends Component
     public $pemasukan = [];
     public $pengeluaran = [];
 
+    public $totalKas;
     public $totalPemasukan;
     public $totalPengeluaran;
 
@@ -21,14 +23,15 @@ new class extends Component
     {
         $this->jumlahMurid = Murid::count();
 
-        $this->sudahBayar = PembayaranMurid::distinct('murid_id')
+        $siswaSudahBayar = PembayaranMinggu::where('minggu_ke', '>', 0)
+            ->where('status', 'lunas')
+            ->distinct('murid_id')
             ->count('murid_id');
 
-        $this->belumBayar =
-            $this->jumlahMurid - $this->sudahBayar;
+        $this->sudahBayar = $siswaSudahBayar;
+        $this->belumBayar = $this->jumlahMurid - $this->sudahBayar;
 
         $this->loadChartData();
-
         $this->loadKasData();
     }
 
@@ -55,6 +58,9 @@ new class extends Component
 
     public function loadKasData()
     {
+        $kas = TotalKas::first();
+        $this->totalKas = $kas ? $kas->total_saldo : 0;
+
         $this->totalPemasukan = RiwayatTransaksi::where('tipe', 'pemasukan')
             ->sum('jumlah');
 
