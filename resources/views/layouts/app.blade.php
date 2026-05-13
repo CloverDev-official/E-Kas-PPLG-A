@@ -12,7 +12,7 @@
     </head>
     <body class="bg-background md:flex md:justify-start overflow-x-hidden"  x-data="{ openside: false }" :class="openside ? 'overflow-hidden h-screen' : ''" >
         <livewire:sidebar/>
-        <main class="grow-7 p-4" >
+        <main class="grow p-4" >
             <livewire:header/>
             {{ $slot }}
         </main>
