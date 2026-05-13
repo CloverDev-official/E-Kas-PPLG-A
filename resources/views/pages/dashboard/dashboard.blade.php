@@ -69,14 +69,14 @@
                 Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}
             </div>
         </div>
-        <!-- card pengeluaran -->
+        <!-- card total kas -->
         <div class="bg-primary rounded-xl px-4 py-5 shadow-md flex flex-col" >
             <div class="flex items-center justify-start gap-2 pb-2 text-white border-b border-white">
                 <iconify-icon icon="mdi:account-balance-wallet" width="24" height="24" class="hidden md:block"></iconify-icon>
                 <h1 class="font-medium text-xs md:text-md capitalize font-body ">total KAS</h1>
             </div>
             <div class="flex items-center justify-center flex-1 p-2 text-white text-2xl md:text-h1 font-bold">
-                Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}
+                Rp {{ number_format($totalKas, 0, ',', '.') }}
             </div>
         </div>
     </div>
